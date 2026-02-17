@@ -5,7 +5,7 @@ function App() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
 
     if (!email || !password) {
@@ -13,10 +13,29 @@ function App() {
       return;
     }
 
-    console.log("Email:", email);
-    console.log("Password:", password);
+    try {
+      const response = await fetch("https://your-backend-url/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ email, password })
+      });
 
-    alert("Login Successful (Frontend only)");
+      const data = await response.json();
+
+      if (response.ok) {
+        alert("Login Successful ✅");
+        console.log(data);
+      } else {
+        alert("Login Failed ❌");
+        console.log(data);
+      }
+
+    } catch (error) {
+      console.error(error);
+      alert("Server Error 🚨");
+    }
   };
 
   return (
