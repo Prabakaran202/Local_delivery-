@@ -1,17 +1,16 @@
-from fastapi import APIRouter,HTTPException
-from schemas.user import FoodItem, FoodIemCreate
-router =APIRouter(prefix="/users",tags=["users"])
+from fastapi import APIRouter, HTTPException
+from schemas.user import UserLogin
 
+router = APIRouter()
 
+fake_user = {
+    "email": "test@gmail.com",
+    "password": "1234"
+}
 
-mdb=[{"id":3,"name":"dhosa","price":2445,"category":"teabenitems"}]
-
-
-@router.get("/")
-async def get_all_user():
-    return mdb
-@router.get("/add")
-async def add_user(user:FoodIemCreate):
-    new_user = {"id": len(mdb) + 1, **user.model_dump(), "is_active": True}
-    mdb.append(new_user)
-    return new_user
+@router.post("/login")
+def login(user: UserLogin):
+    if user.email != fake_user["email"] or user.password != fake_user["password"]:
+        raise HTTPException(status_code=401, detail="Invalid credentials")
+    
+    return {"message": "Login successful"}
