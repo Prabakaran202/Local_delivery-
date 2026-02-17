@@ -1,17 +1,9 @@
-from pydantic import BaseModel,Field
-from typing import Optional
+from pydantic import BaseModel, EmailStr
 
+class UserCreate(BaseModel):
+    email: EmailStr
+    password: str
 
-class FoodItem(BaseModel):
-    id:int
-    name:str=Field(...,min_length =3)
-    price :float =Field(...,gt=0)
-    category:str
-    is_available:bool=True
-
-#neew items add 
-
-class FoodIemCreate(BaseModel):
-    name:str
-    price:float
-    category:str
+class UserLogin(BaseModel):
+    email: EmailStr
+    password: str
