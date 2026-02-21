@@ -1,17 +1,5 @@
 import React, { useState } from "react";
-import "./App.css";
-
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Register from "./Register";
-function App() {
-  return (
-    <Router>
-      <Routes>
-        <Route path="/register" element={<Register />} />
-      </Routes>
-    </Router>
-  );
-}
+import "./App
 
 function App() {
   const [email, setEmail] = useState("");
