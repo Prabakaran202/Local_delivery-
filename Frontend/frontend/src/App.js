@@ -72,11 +72,7 @@ function App() {
               
       </div>
     </div>
-   <Router>
-      <Routes>
-        <Route path="/register" element={<Register />} />
-      </Routes>
-    </Router>
+   
   );
 }
 
