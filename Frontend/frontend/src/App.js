@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import "./App.css";
 
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Register from "./Register";
+
 function App() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -64,9 +67,16 @@ function App() {
 
         <p className="signup-text">
           Don’t have an account? <span>Register</span>
+             
         </p>
+              
       </div>
     </div>
+   <Router>
+      <Routes>
+        <Route path="/register" element={<Register />} />
+      </Routes>
+    </Router>
   );
 }
 
